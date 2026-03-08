@@ -1,0 +1,17 @@
+.forum-page {
+    margin: 0;
+    background-color: #f5faff;
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.logo {
+    max-width: 560px;
+    height: auto;
+    display: block;
+    margin: 20px auto 0;
+    filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}

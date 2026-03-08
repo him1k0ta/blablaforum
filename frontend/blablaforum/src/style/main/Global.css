@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    background-color: #f5faff;
+    background-image: url('../img/Polygon 2.png');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+  }

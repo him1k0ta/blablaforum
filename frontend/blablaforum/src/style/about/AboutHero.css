@@ -1,0 +1,22 @@
+.hero-section {
+  background: linear-gradient(to bottom, #f7f9fc, #ffffff);
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.hero-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 36px;
+  color: #211D67;
+  margin-bottom: 16px;
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: #555;
+  line-height: 1.6;
+}

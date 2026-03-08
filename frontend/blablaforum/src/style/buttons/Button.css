@@ -1,0 +1,73 @@
+.button {
+    display: flex;
+    align-items: center;
+    border: 1px solid #8a8a8a;
+    border-radius: 9999px;
+    font-size: 14px;
+    color: #211D67;
+    background-color: transparent;
+    border-color: #211D67;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+}
+
+.button:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+}
+
+/* Специфические стили для разных кнопок */
+.auth-btn,
+.register-btn {
+    padding: 5%;
+}
+
+.register-btn {
+    margin-right: 100px;
+}
+
+.auth-btn {
+    margin-right: 30px;
+}
+
+.create-btn {
+    padding: 3.5%;
+}
+
+.thread-reply-btn {
+    padding: 6px 15px;
+    font-size: 14px;
+    padding: 0.9%;
+    background: #b3e5fc;
+    border: none;
+}
+
+.info-btn2 {
+    background: #b3e5fc;
+    border: none;
+    padding: 14px 15px;
+    font-size: 18px;
+    color: #001f3f;
+}
+
+.thread-btn {
+    background: #b3e5fc;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    color: #001f3f;
+
+}
+
+.telegram-btn {
+    background: #29b6f6;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+    border: none;
+}

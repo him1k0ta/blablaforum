@@ -1,0 +1,27 @@
+.register-page {
+    font-family: "Anton", sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #211D67;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .register-main {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .form-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

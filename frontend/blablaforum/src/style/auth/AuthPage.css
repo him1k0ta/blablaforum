@@ -1,0 +1,12 @@
+.auth-page {
+    font-family: "Anton", sans-serif;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #211D67;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+  }

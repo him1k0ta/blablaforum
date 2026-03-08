@@ -1,0 +1,67 @@
+.threadFormContainer {
+  max-width: 700px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.formTitle {
+  font-size: 28px;
+  color: #211D67;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.threadForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  transition: border 0.3s, box-shadow 0.3s;
+  resize: vertical;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: #211d676b;
+  box-shadow: 0 0 0 3px rgba(33, 29, 103, 0.1);
+  outline: none;
+}
+
+.submitBtn {
+  padding: 12px 24px;
+  background-color: #b3e5fc;
+  color: #191758;
+  border: none;
+  border-radius: 999px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 10px;
+}
+
+.submitBtn:hover {
+  background-color: #b3e5fcaf;
+}

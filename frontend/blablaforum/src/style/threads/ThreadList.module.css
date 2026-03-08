@@ -1,0 +1,608 @@
+.threadsContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.mainTitle {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+}
+
+.empty {
+    text-align: center;
+    padding: 50px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    margin: 20px 0;
+}
+
+.createThreadBtn {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+
+.createThreadBtn:hover {
+    background: #2980b9;
+}
+
+.threadsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.threadCard {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.threadCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.threadLink {
+    display: block;
+    padding: 20px;
+    text-decoration: none;
+    color: #333;
+}
+
+.threadHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.threadTitle {
+    margin: 0;
+    font-size: 1.2rem;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.threadCategory {
+    background: #e74c3c;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.threadContent {
+    margin: 0 0 15px 0;
+    color: #555;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.threadMeta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    font-size: 0.85rem;
+    color: #7f8c8d;
+}
+
+.metaItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.threadStats {
+    display: flex;
+    gap: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.statBtn, .statItem {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    color: #7f8c8d;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.statBtn:hover {
+    color: #3498db;
+}
+
+.icon {
+    font-size: 1rem;
+}
+
+.liked {
+    color: #e74c3c;
+}
+
+.threadTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+
+.tag {
+    background: #f1f1f1;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: #555;
+}
+
+.commentsSection {
+    padding: 15px;
+    background: #f8f9fa;
+    border-top: 1px solid #eee;
+}
+
+.commentsList {
+    margin-bottom: 15px;
+}
+
+.comment {
+    background: white;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.commentHeader {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.commentText {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.commentForm {
+    display: flex;
+    gap: 10px;
+}
+
+.commentInput {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.commentSubmit {
+    padding: 8px 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.commentSubmit:hover {
+    background: #2980b9;
+}
+.headerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.homeButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background: #b3e5fc;
+    color: #001f3f;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background 0.3s;
+    font-size: 0.95rem;
+}
+
+.homeButton:hover {
+    background: #b3e5fc91;
+}
+
+.homeIcon {
+    font-size: 1rem;
+}
+
+.mainTitle {
+    color: #b3e5fc;
+    margin: 0;
+    font-size: 2rem;
+    text-align: center;
+    flex-grow: 1;
+}
+/* Стили для отладки */
+.debugInfo {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    background: rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    display: flex;
+    gap: 10px;
+  }
+  
+  /* Улучшенные стили для кнопки удаления */
+  .deleteBtn {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+  
+  .deleteBtn:hover {
+    transform: scale(1.05);
+    color: #ff0000 !important;
+    background-color: rgba(255, 0, 0, 0.2) !important;
+  }
+  
+  /* Гарантированное отображение иконок */
+  .icon {
+    display: inline-block !important;
+    font-size: 16px !important;
+  }
+  /* Добавляем новые стили */
+.userStatusPanel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+  
+  .userStatus {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .adminBadge {
+    background: #ff4444;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .threadActions {
+    display: flex;
+    gap: 5px;
+    margin-left: auto;
+  }
+  
+  .actionBtn {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .editBtn {
+    color: #4CAF50;
+  }
+  
+  .editBtn:hover {
+    background: rgba(76, 175, 80, 0.1);
+  }
+  
+  .deleteBtn {
+    color: #ff4444;
+  }
+  
+  .deleteBtn:hover {
+    background: rgba(255, 68, 68, 0.1);
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  
+  .authPrompt {
+    text-align: center;
+    padding: 10px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  .authPrompt a {
+    color: #2196F3;
+    text-decoration: none;
+  }
+  
+  .authPrompt a:hover {
+    text-decoration: underline;
+  }
+  .threadPage {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.threadHeaderActions {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.backButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #211D67;
+    text-decoration: none;
+}
+
+.deleteThreadButton {
+    background: #ff4444;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.2s;
+}
+
+.deleteThreadButton:hover {
+    background: #cc0000;
+}
+
+.threadContainer {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.threadHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.threadTitle {
+    margin: 0;
+    color: #211D67;
+}
+
+.threadCategory {
+    background: #211D67;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.threadMeta {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.threadContent {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.threadActions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.likeButton {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+}
+
+.likeButton.liked {
+    color: #e74c3c;
+}
+
+.threadTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.tag {
+    background: #f1f1f1;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    color: #555;
+}
+
+.commentsSection {
+    margin-top: 30px;
+}
+
+.commentsTitle {
+    color: #211D67;
+    margin-bottom: 15px;
+}
+
+.commentForm {
+    margin-bottom: 20px;
+}
+
+.commentInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+    min-height: 80px;
+}
+
+.commentButtons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.commentSubmit {
+    background: #211D67;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cancelReplyButton {
+    background: #f5f5f5;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.commentsList {
+    margin-top: 20px;
+}
+
+.comment {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.commentHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.commentAuthor {
+    font-weight: bold;
+    color: #211D67;
+}
+
+.commentDate {
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.commentActions {
+    display: flex;
+    gap: 10px;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.deleteButton:hover {
+    color: #ff0000;
+    transform: scale(1.1);
+}
+
+.replyButton {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.replies {
+    margin-top: 15px;
+    margin-left: 30px;
+    border-left: 2px solid #eee;
+    padding-left: 15px;
+}
+
+.reply {
+    margin-bottom: 15px;
+}
+
+.authPrompt {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.loginLink {
+    color: #211D67;
+    font-weight: bold;
+}
+
+.loading, .error {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.2rem;
+}
+
+.spinner {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border: 2px solid rgba(0,0,0,0.2);
+    border-radius: 50%;
+    border-top-color: #211D67;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}

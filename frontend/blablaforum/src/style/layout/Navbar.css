@@ -1,0 +1,71 @@
+.navbar2 {
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+}
+
+.nav-left2,
+  .nav-right2 {
+    display: flex;
+    align-items: center;
+    margin-top: 100px;
+  }
+.home-btn {
+    background: none;
+    border: none;
+    color: #211D67;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 12px;
+    border-radius: 9999px;
+    transition: background-color 0.3s;
+}
+
+.home-btn:hover {
+    background-color: #00aaff19;
+}
+
+.home-btn svg {
+    font-size: 18px;
+}
+
+.nav-center2 {
+    text-align: center;
+    transform: translateX(50px);
+    margin-top: 50px;
+}
+
+.logo2 {
+    max-width: 350px;
+    height: auto;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.logo2.logo-small {
+    max-width: 350px;
+}
+.logout-btn {
+    margin-right: 80px;
+    border: 1px solid #8a8a8a;
+    border-radius: 9999px;
+    font-size: 14px;
+    color: #211D67;
+    background-color: transparent;
+    border-color: #211D67;
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    padding: 15px 16px;
+    cursor: pointer;
+    margin-top: -90px;
+  }
+  .logout-btn:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+}

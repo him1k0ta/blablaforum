@@ -1,0 +1,75 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 98%;
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+}
+
+.footer-left,
+.footer-center,
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стили для кнопок "О форуме" и "Правила" */
+.footer-info-btn {
+    border: 1px solid #211D67;
+    border-radius: 9999px;
+    font-size: 14px;
+    color: #211D67;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.footer-info-btn:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+}
+
+/* Стили для кнопки "Создать тред" */
+.footer-create-btn {
+    padding: 3.5%;
+    border: 1px solid #211D67;
+    border-radius: 9999px;
+    font-size: 14px;
+    color: #211D67;
+    background-color: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.footer-create-btn:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+
+}
+
+/* Стили для кнопки Telegram */
+.telegram-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #29b6f6;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.telegram-btn:hover {
+    transform: scale(1.1);
+}
+
+.telegram-btn i {
+    font-size: 18px;
+}

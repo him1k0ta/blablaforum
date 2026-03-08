@@ -1,0 +1,68 @@
+.adminPanel {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.adminControls {
+  margin: 20px 0;
+}
+
+.searchInput {
+  padding: 8px 12px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.threadsList {
+  margin-top: 20px;
+}
+
+.adminTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.adminTable th, .adminTable td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.adminTable th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.threadLink {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.threadLink:hover {
+  text-decoration: underline;
+}
+
+.deleteBtn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteBtn:hover {
+  background-color: #c0392b;
+}
+
+.loading, .error, .noThreads {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+}
+
+.error {
+  color: #e74c3c;
+}

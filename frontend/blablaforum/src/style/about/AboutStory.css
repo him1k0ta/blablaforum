@@ -1,0 +1,19 @@
+.about-story {
+  background-color: #fff;
+  padding: 30px 20px;
+}
+
+.about-story h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #211D67;
+  margin-bottom: 40px;
+}
+
+.timeline {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

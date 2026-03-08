@@ -1,0 +1,150 @@
+.content-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 80px;
+  min-height: 300px;
+}
+
+.column {
+  flex: 1;
+  margin: 0 20px;
+  transform: translateX(50px);
+  text-align: center;
+  max-width: 600px;
+}
+
+.column-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #211D67;
+  margin-bottom: 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.column-title::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #211D67;
+  transition: width 0.3s ease;
+}
+
+.column:hover .column-title::after {
+  width: 100%;
+}
+
+.column-list {
+  list-style-type: none;
+  padding: 0;
+  display: inline-block;
+  text-align: left;
+  width: 100%;
+}
+
+.column-item {
+  margin-bottom: 8px;
+}
+
+.thread-link {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  padding: 5px 0;
+  overflow: hidden;
+}
+
+.link-text {
+  position: relative;
+  font-size: 18px;
+  color: #211d679d;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.link-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #211D67;
+  transition: width 0.3s ease;
+}
+
+.thread-link:hover .link-text {
+  color: #211D67;
+  transform: translateX(5px);
+}
+
+.thread-link:hover .link-underline {
+  width: 100%;
+}
+
+.nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 10px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.nav-arrow:hover {
+  background-color: #00aaff19;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.nav-arrow.left {
+  left: 10px;
+}
+
+.nav-arrow.right {
+  right: 10px;
+}
+
+.nav-arrow img {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.3s ease;
+}
+
+.nav-arrow:hover img {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .content-section {
+    padding: 20px 40px;
+  }
+  
+  .column {
+    transform: none;
+    margin: 0;
+  }
+  
+  .link-text {
+    font-size: 16px;
+  }
+  
+  .nav-arrow {
+    padding: 8px;
+  }
+  
+  .nav-arrow img {
+    width: 20px;
+    height: 20px;
+  }
+}

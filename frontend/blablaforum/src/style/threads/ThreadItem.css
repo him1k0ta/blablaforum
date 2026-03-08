@@ -1,0 +1,88 @@
+.thread {
+    background-color: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.thread {
+    cursor: pointer;
+  }
+  
+  .thread-title {
+    cursor: pointer;
+  }
+.thread:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+}
+
+.thread-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.thread-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #211D67;
+    text-decoration: none;
+}
+
+.thread-meta {
+    display: flex;
+    align-items: center;
+    color: #8a8a8a;
+    font-size: 14px;
+}
+
+.thread-author {
+    color: #211d67;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.thread-date {
+    margin-right: 10px;
+}
+
+.thread-category {
+    background-color: #e1f5fe;
+    color: #0288d1;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 12px;
+}
+
+.thread-content {
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.thread-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.thread-stats {
+    display: flex;
+    gap: 15px;
+}
+
+.thread-stat {
+    display: flex;
+    align-items: center;
+    color: #8a8a8a;
+    font-size: 14px;
+}
+
+.thread-stat i {
+    margin-right: 5px;
+}

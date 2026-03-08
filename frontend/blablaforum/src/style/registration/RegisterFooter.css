@@ -1,0 +1,48 @@
+.rules-footer {
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.help {
+  margin-bottom: 25px;
+}
+
+.support-link {
+  color: #6b7280;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+
+.support-link:hover {
+  color: #211D67;
+}
+
+.home-btn {
+  background: #211D67;
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 16px 45px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 15px rgba(33, 29, 103, 0.2);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.home-btn:hover {
+  background: #00AAFF;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 170, 255, 0.3);
+}
+
+.footer-note {
+  color: #6b7280;
+  font-size: 0.9rem;
+  margin-top: 15px;
+}

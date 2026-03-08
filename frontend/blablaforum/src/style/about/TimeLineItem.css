@@ -1,0 +1,32 @@
+.timeline-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border-left: 4px solid #211D67;
+  padding-left: 16px;
+  position: relative;
+}
+
+.timeline-year {
+  font-weight: bold;
+  font-size: 18px;
+  color: #211D67;
+  min-width: 60px;
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.content-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.content-description {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}

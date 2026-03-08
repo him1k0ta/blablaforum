@@ -1,0 +1,101 @@
+/* Основной контейнер страницы */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center; /* Центрирование по горизонтали */
+  }
+  
+  /* Основное содержимое */
+  .main-content {
+    flex: 1;
+    padding: 40px 20px; /* Увеличенные отступы */
+    max-width: 1200px; /* Ограничение ширины */
+    width: 100%;
+  }
+  
+  /* Заголовок правил */
+  .rules-title {
+    text-align: center;
+    color: #3B82F6; /* Голубой цвет */
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
+  
+  /* Описание правил */
+  .rules-description {
+    text-align: center;
+    color: #4B5563; /* Серый цвет текста */
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  
+  /* Контейнер карточек */
+  .rules-cards-wrapper {
+    display: flex;
+    justify-content: center; /* Центрирование карточек */
+    flex-wrap: wrap; /* Перенос на новую строку */
+    gap: 30px; /* Увеличенный промежуток */
+    padding: 20px 0;
+  }
+  
+  /* Стили карточек */
+  .rules-card {
+    flex: 0 0 auto;
+    width: 425px; /* Увеличенная ширина */
+    background: white;
+    border-radius: 12px; /* Увеличенный радиус */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Более мягкая тень */
+    padding: 30px; /* Увеличенный padding */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 10px;
+  }
+  
+  .rules-card:hover {
+    transform: translateY(-8px); /* Более заметный эффект при наведении */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* Увеличенный отступ */
+  }
+  
+  .card-icon {
+    font-size: 28px; /* Увеличенный размер иконки */
+    margin-right: 15px;
+  }
+  
+  .card-title {
+    margin: 0;
+    font-size: 20px; /* Увеличенный размер шрифта */
+    font-weight: 600;
+  }
+  
+  .card-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .card-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 12px; /* Увеличенный отступ */
+    line-height: 1.5;
+    font-size: 16px; /* Увеличенный размер шрифта */
+  }
+  
+  .item-bullet {
+    display: inline-block;
+    width: 10px; /* Увеличенный размер */
+    height: 10px; /* Увеличенный размер */
+    border-radius: 50%;
+    margin-right: 12px;
+    margin-top: 8px;
+    flex-shrink: 0;
+  }

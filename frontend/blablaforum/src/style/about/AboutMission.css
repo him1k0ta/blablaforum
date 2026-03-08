@@ -1,0 +1,19 @@
+.about-mission {
+  padding: 30px 20px;
+  background-color: #fafafa;
+}
+
+.about-mission h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #211D67;
+  margin-bottom: 40px;
+}
+
+.mission-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
