@@ -23,17 +23,28 @@ export const AuthProvider = ({ children }) => {
         
         if (response.status === 200) {
           const user = JSON.parse(userData);
+          // Обновляем данные пользователя с сервера
+          const updatedUser = {
+            ...user,
+            is_superuser: response.data.is_admin
+          };
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+          
           setAuthState({
             token,
-            user,
+            user: updatedUser,
             isAuthenticated: true,
             isLoading: false,
-            isAdmin: user.is_superuser
+            isAdmin: response.data.is_admin
           });
           return;
         }
       } catch (error) {
         console.error('Auth initialization error:', error);
+        // Если токен невалидный, очищаем localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('user');
+        delete api.defaults.headers.common['Authorization'];
       }
     }
     

@@ -31,7 +31,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Должен быть как можно выше
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',  # Отключаем CSRF для API
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -42,7 +42,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +130,8 @@ REST_FRAMEWORK = {
         'user': '1000/day'
     },
     'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+    'CSRF_COOKIE_NAME': 'csrftoken',
+    'CSRF_HEADER_NAME': 'HTTP_X_CSRFTOKEN',
 }
 
 # CORS Settings
@@ -156,6 +158,14 @@ DEFAULT_FROM_EMAIL = 'noreply@example.com'
 # Auth settings
 LOGIN_URL = '/api/auth/login/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_SECURE = False  # Для разработки, в продакшене True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = False  # Для разработки, в продакшене True
 
 # Logging
 LOGGING = {

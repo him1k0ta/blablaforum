@@ -82,6 +82,11 @@
     border-color: #1a1547;
   }
   
+  .logout-btn:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+  }
+  
   .create-btn img {
     margin-left: 4px;
     width: 35%;

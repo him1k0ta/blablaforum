@@ -3,15 +3,30 @@ from django.db import models
 from django.utils import timezone
 
 class User(AbstractUser):
+    """
+    Расширенная модель пользователя.
+    """
     pass
 
 class Tag(models.Model):
+    """
+    Модель тегов для категоризации тредов.
+    """
     name = models.CharField(max_length=50, unique=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Теги'
+        ordering = ['name']
 
     def __str__(self):
         return self.name
 
 class Thread(models.Model):
+    """
+    Модель треда (обсуждения).
+    """
     title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='threads')
@@ -21,10 +36,16 @@ class Thread(models.Model):
     category = models.CharField(max_length=100, blank=True, null=True)
     tags = models.ManyToManyField('Tag', related_name='threads', blank=True)
 
+    class Meta:
+        verbose_name = 'Тред'
+        verbose_name_plural = 'Треды'
+        ordering = ['-created_at']
+
     def __str__(self):
         return self.title
 
     def increment_views(self):
+        """Увеличивает счетчик просмотров треда."""
         self.views += 1
         self.save(update_fields=['views'])
 
@@ -32,11 +53,10 @@ class Thread(models.Model):
         self.comments_count = self.comments.count()
         self.save(update_fields=['comments_count'])
 
-    def refresh_like_count(self):
-        self.likes_count = self.likes.count()
-        self.save(update_fields=['likes_count'])
-
 class Comment(models.Model):
+    """
+    Модель комментария к треду.
+    """
     thread = models.ForeignKey(
         Thread,
         on_delete=models.CASCADE,
@@ -59,6 +79,8 @@ class Comment(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
         ordering = ['created_at']
 
     def __str__(self):
@@ -66,17 +88,22 @@ class Comment(models.Model):
 
     @property
     def is_reply(self):
+        """Проверяет, является ли комментарий ответом."""
         return self.parent is not None
 
 class Like(models.Model):
+    """
+    Модель лайка для треда.
+    """
     thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='likes')
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='likes')
     created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         unique_together = ('thread', 'user')
-        verbose_name = 'Like'
-        verbose_name_plural = 'Likes'
+        verbose_name = 'Лайк'
+        verbose_name_plural = 'Лайки'
+        ordering = ['-created_at']
 
     def __str__(self):
         return f"{self.user} likes {self.thread}"

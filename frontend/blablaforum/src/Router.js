@@ -10,6 +10,8 @@ import About from './pages/about';
 import Create from './pages/create';
 import AdminPanel from './pages/admin';
 import ThreadPage from './pages/threadpage';
+import Profile from './pages/profile';
+
 const AppRoutes = () => {
     return (
         <Routes>
@@ -22,6 +24,7 @@ const AppRoutes = () => {
             <Route path="/create" element={<Create/>}/>
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/thread/:id" element={<ThreadPage />} />
+            <Route path="/profile" element={<Profile />} />
         </Routes>
     );
 };

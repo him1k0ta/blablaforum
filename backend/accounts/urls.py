@@ -10,7 +10,10 @@ from .views import (
     AdminThreadListView,
     AdminThreadDeleteView,
     VerifyTokenView,
-    CommentDeleteView
+    CommentDeleteView,
+    UserProfileView,
+    UserLikedThreadsView,
+    AdminStatisticsView
 )
 
 urlpatterns = [
@@ -31,4 +34,7 @@ urlpatterns = [
 
     path('admin/threads/', AdminThreadListView.as_view(), name='admin-thread-list'),
     path('admin/threads/<int:pk>/', AdminThreadDeleteView.as_view(), name='admin-thread-delete'),
+    path('admin/statistics/', AdminStatisticsView.as_view(), name='admin-statistics'),
+    path('profile/', UserProfileView.as_view(), name='user-profile'),
+    path('profile/liked/', UserLikedThreadsView.as_view(), name='user-liked-threads'),
 ]
