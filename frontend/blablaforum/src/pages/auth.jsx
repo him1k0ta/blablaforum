@@ -40,6 +40,7 @@ const AuthPage = () => {
   });
 
   const onSubmit = async ({ username, password }) => {
+    console.log('Form submitted with:', { username, password: '***' });
     setIsLoading(true);
     setServerError(null);
 
