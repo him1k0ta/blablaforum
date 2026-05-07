@@ -23,5 +23,7 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('accounts.urls')),  # Добавьте эту строку
+    path('api/', include('accounts.urls')),
+    path('api/forums/', include('forums.urls')),
+    path('api/moderation/', include('moderation.urls')),
 ]

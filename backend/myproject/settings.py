@@ -19,6 +19,8 @@ INSTALLED_APPS = [
 
     # Ваши приложения
     'accounts.apps.AccountsConfig',
+    'forums.apps.ForumsConfig',
+    'moderation.apps.ModerationConfig',
 
     # Сторонние приложения
     'rest_framework',

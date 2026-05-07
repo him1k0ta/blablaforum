@@ -6,14 +6,23 @@ class User(AbstractUser):
     """
     Расширенная модель пользователя.
     """
-    pass
+    avatar = models.ImageField(
+        upload_to='avatars/',
+        blank=True,
+        null=True,
+        verbose_name='Аватар'
+    )
+    
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
 class Tag(models.Model):
     """
     Модель тегов для категоризации тредов.
     """
     name = models.CharField(max_length=50, unique=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(default=timezone.now)
 
     class Meta:
         verbose_name = 'Тег'
@@ -107,3 +116,20 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user} likes {self.thread}"
+
+class FavoriteThread(models.Model):
+    """
+    Модель избранных тредов.
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='favorite_threads')
+    thread = models.ForeignKey(Thread, on_delete=models.CASCADE, related_name='favorited_by')
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'thread')
+        verbose_name = 'Избранный тред'
+        verbose_name_plural = 'Избранные треды'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.user} favorited {self.thread}"
