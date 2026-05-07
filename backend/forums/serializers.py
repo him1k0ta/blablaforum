@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from .models import Board, Post
-from accounts.serializers import ThreadSerializer
 
 
 class BoardSerializer(serializers.ModelSerializer):
@@ -12,9 +11,10 @@ class BoardSerializer(serializers.ModelSerializer):
 
 class PostSerializer(serializers.ModelSerializer):
     author_username = serializers.CharField(source='author.username', read_only=True)
+    thread_title = serializers.CharField(source='thread.title', read_only=True)
     
     class Meta:
         model = Post
         fields = ['id', 'thread', 'author', 'content', 'created_at', 'updated_at', 
-                  'is_op', 'image', 'author_username']
-        read_only_fields = ['id', 'created_at', 'updated_at', 'author_username']
+                  'is_op', 'is_sage', 'image', 'author_username', 'thread_title']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'author_username', 'thread_title']

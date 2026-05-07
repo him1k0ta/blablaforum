@@ -48,6 +48,7 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата обновления')
     is_op = models.BooleanField(default=False, verbose_name='Оригинальный пост')
+    is_sage = models.BooleanField(default=False, verbose_name='Sage (без бампа)')
     image = models.ImageField(
         upload_to='post_images/',
         blank=True,

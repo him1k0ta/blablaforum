@@ -39,9 +39,12 @@ class Thread(models.Model):
     title = models.CharField(max_length=200)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='threads')
+    board = models.ForeignKey('forums.Board', on_delete=models.CASCADE, related_name='threads', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     views = models.PositiveIntegerField(default=0)
+    posts_count = models.PositiveIntegerField(default=0)  # Количество постов в треде
+    bump_time = models.DateTimeField(default=timezone.now)  # Для сортировки по последнему ответу
     category = models.CharField(max_length=100, blank=True, null=True)
     tags = models.ManyToManyField('Tag', related_name='threads', blank=True)
 
@@ -61,6 +64,36 @@ class Thread(models.Model):
     def refresh_comment_count(self):
         self.comments_count = self.comments.count()
         self.save(update_fields=['comments_count'])
+
+    def increment_posts_count(self):
+        """Увеличивает счетчик постов."""
+        self.posts_count += 1
+        self.save(update_fields=['posts_count'])
+
+    def can_bump(self):
+        """Проверяет, можно ли бампнуть тред."""
+        if not self.is_bump_allowed:
+            return False, "Бамп запрещен для этого треда"
+        
+        # Проверяем лимит постов
+        MAX_POSTS_LIMIT = 1000
+        if self.posts_count >= MAX_POSTS_LIMIT:
+            return False, f"Достигнут лимит постов ({MAX_POSTS_LIMIT})"
+        
+        # Проверяем время жизни треда (например, 7 дней)
+        from datetime import timedelta
+        if timezone.now() - self.created_at > timedelta(days=7):
+            return False, "Тред слишком старый для бампа"
+        
+        return True, "Бамп разрешен"
+
+    def bump_thread(self):
+        """Обновляет bump_time треда."""
+        can_bump, message = self.can_bump()
+        if can_bump:
+            self.bump_time = timezone.now()
+            self.save(update_fields=['bump_time'])
+        return can_bump, message
 
 class Comment(models.Model):
     """
@@ -116,6 +149,38 @@ class Like(models.Model):
 
     def __str__(self):
         return f"{self.user} likes {self.thread}"
+    
+    def save(self, *args, **kwargs):
+        """При сохранении лайка проверяем, первый ли это лайк пользователя."""
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        
+        # Если это первый лайк пользователя в треде, добавляем в избранное
+        if is_new:
+            from .models import FavoriteThread
+            favorite, created = FavoriteThread.objects.get_or_create(
+                user=self.user,
+                thread=self.thread
+            )
+            if created:
+                print(f"Тред {self.thread.title} добавлен в избранное для пользователя {self.user.username}")
+    
+    def delete(self, *args, **kwargs):
+        """При удалении лайка проверяем, есть ли другие лайки пользователя в треде."""
+        thread_id = self.thread_id
+        user_id = self.user_id
+        super().delete(*args, **kwargs)
+        
+        # Если других лайков нет, удаляем из избранного
+        remaining_likes = Like.objects.filter(thread_id=thread_id, user_id=user_id).exists()
+        if not remaining_likes:
+            from .models import FavoriteThread
+            try:
+                favorite = FavoriteThread.objects.get(user_id=user_id, thread_id=thread_id)
+                favorite.delete()
+                print(f"Тред удален из избранного для пользователя {self.user.username}")
+            except FavoriteThread.DoesNotExist:
+                pass
 
 class FavoriteThread(models.Model):
     """

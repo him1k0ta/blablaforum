@@ -5,6 +5,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from .models import Thread, Like, Comment, Tag
+from forums.serializers import PostSerializer
 
 
 User = get_user_model()
@@ -102,6 +103,38 @@ class AdminThreadSerializer(serializers.ModelSerializer):
 
     def get_comments_count(self, obj):
         return obj.comments.count()
+
+
+class ThreadDetailSerializer(serializers.ModelSerializer):
+    """Сериализатор для детальной информации о треде с постами."""
+    author = serializers.StringRelatedField(read_only=True)
+    tags = TagSerializer(many=True, read_only=True)
+    likes_count = serializers.SerializerMethodField()
+    comments_count = serializers.SerializerMethodField()
+    is_liked = serializers.SerializerMethodField()
+    posts = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Thread
+        fields = [
+            'id', 'title', 'content', 'author', 'created_at', 'updated_at',
+            'views', 'category', 'tags', 'likes_count', 'comments_count', 'is_liked', 'posts'
+        ]
+        read_only_fields = ['author', 'created_at', 'updated_at', 'views']
+
+    def get_likes_count(self, obj):
+        return obj.likes.count()
+
+    def get_comments_count(self, obj):
+        return obj.comments.count()
+
+    def get_is_liked(self, obj):
+        request = self.context.get('request')
+        return request and request.user.is_authenticated and obj.likes.filter(user=request.user).exists()
+
+    def get_posts(self, obj):
+        posts = obj.posts.all().order_by('created_at')
+        return PostSerializer(posts, many=True, context={'request': self.context.get('request')}).data
 
 
 class LikeSerializer(serializers.ModelSerializer):

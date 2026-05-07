@@ -75,7 +75,7 @@ class ModerationQueue(models.Model):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.get_content_type_display()} #{self.content_id} - {self.get_status_display()}"
+        return f"Moderation for {self.content_type} by {self.reported_by}"
 
     def approve(self, moderator, comment=''):
         """Одобрить контент."""

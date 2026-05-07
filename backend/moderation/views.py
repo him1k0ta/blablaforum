@@ -31,3 +31,10 @@ class ModerationQueueViewSet(viewsets.ModelViewSet):
         instance = self.get_object()
         instance.delete_content(request.user, request.data.get('comment', ''))
         return Response({'status': 'deleted'}, status=status.HTTP_200_OK)
+    
+    def get_queryset(self):
+        """Фильтрация по статусу."""
+        status_filter = self.request.query_params.get('status', None)
+        if status_filter:
+            return ModerationQueue.objects.filter(status=status_filter).order_by('-created_at')
+        return ModerationQueue.objects.all().order_by('-created_at')
