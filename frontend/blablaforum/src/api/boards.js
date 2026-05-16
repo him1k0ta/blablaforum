@@ -39,10 +39,17 @@ export const boardsAPI = {
   // Создать тред в доске
   createThreadInBoard: async (boardSlug, threadData, token) => {
     try {
+      // Получаем ID доски по slug
+      const boardsResponse = await axios.get(`${API_URL}boards/`);
+      const board = boardsResponse.data.results.find(b => b.slug === boardSlug);
+      
+      if (!board) {
+        throw new Error(`Доска ${boardSlug} не найдена`);
+      }
+
       const config = {
         headers: {
           'Authorization': `Token ${token}`,
-          'Content-Type': 'application/json'
         }
       };
 
@@ -51,20 +58,25 @@ export const boardsAPI = {
         const formData = new FormData();
         formData.append('title', threadData.title);
         formData.append('content', threadData.content);
-        formData.append('board', boardSlug);
+        formData.append('board', board.id);
         
         if (threadData.image && threadData.image.size > 0) {
           formData.append('image', threadData.image);
         }
 
-        delete config.headers['Content-Type'];
         config.data = formData;
       } else {
-        threadData.board = boardSlug;
-        config.data = threadData;
+        const data = {
+          title: threadData.title,
+          content: threadData.content,
+          board: board.id
+        };
+        config.headers['Content-Type'] = 'application/json';
+        config.data = data;
       }
 
-      const response = await axios.post(`${API_URL}threads/`, config.data, config);
+      // Используем основной API для создания тредов
+      const response = await axios.post('http://localhost:8000/api/threads/', config.data, config);
       return response.data;
     } catch (error) {
       console.error('Error creating thread:', error);

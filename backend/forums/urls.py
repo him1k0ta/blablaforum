@@ -4,10 +4,10 @@ from .views import BoardViewSet, PostViewSet, BoardThreadsView
 from .serializers import BoardSerializer, PostSerializer
 
 router = DefaultRouter()
-router.register(r'boards', BoardViewSet)
-router.register(r'posts', PostViewSet)
+router.register(r'boards', BoardViewSet, basename='board')
+router.register(r'posts', PostViewSet, basename='post')
 
 urlpatterns = [
-    path('api/', include(router.urls)),
-    path('api/boards/<int:board_id>/threads/', BoardThreadsView.as_view({'get': 'list'}), name='board-threads'),
+    path('', include(router.urls)),
+    path('boards/<slug:slug>/threads/', BoardThreadsView.as_view(), name='board-threads'),
 ]

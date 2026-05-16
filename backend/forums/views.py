@@ -99,9 +99,9 @@ class BoardThreadsView(viewsets.GenericViewSet):
     """
     permission_classes = [permissions.AllowAny]
     
-    def list(self, request, board_id=None):
-        if board_id:
-            board = get_object_or_404(Board, id=board_id)
+    def list(self, request, slug=None):
+        if slug:
+            board = get_object_or_404(Board, slug=slug)
             threads = Thread.objects.filter(board=board).order_by('-bump_time', '-created_at')
         else:
             threads = Thread.objects.all().order_by('-bump_time', '-created_at')
