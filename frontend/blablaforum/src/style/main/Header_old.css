@@ -1,0 +1,216 @@
+.navbar {
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: transparent;
+    border: none;
+  }
+  
+  .nav-left,
+  .nav-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .auth-btn,
+  .register-btn,
+  .create-btn,
+  .profile-btn,
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    border: 1px solid #8a8a8a;
+    border-radius: 9999px;
+    font-size: 14px;
+    color: #211D67;
+    background-color: transparent;
+    border-color: #211D67;
+    cursor: pointer;
+    transform: translateY(-50px);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+  }
+  
+  .auth-btn,
+  .register-btn {
+    padding: 5%;
+  }
+  
+  .register-btn {
+    margin-right: 100px;
+  }
+  
+  .auth-btn {
+    margin-right: 30px;
+  }
+  
+  .create-btn {
+    padding: 3.5%;
+  }
+  
+  .profile-btn,
+  .logout-btn {
+    display: flex;
+    align-items: center;
+    border: 1px solid #211D67;
+    border-radius: 9999px;
+    font-size: 14px;
+    color: white;
+    background-color: #211D67;
+    cursor: pointer;
+    transform: translateY(-50px);
+    transition: background-color 0.3s, color 0.3s, transform 0.3s;
+    padding: 5%;
+  }
+  
+  .profile-btn {
+    margin-right: 30px;
+  }
+  
+  .auth-btn:hover,
+  .register-btn:hover,
+  .create-btn:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+  }
+  
+  .profile-btn:hover,
+  .logout-btn:hover {
+    background-color: #1a1547;
+    color: white;
+    border-color: #1a1547;
+  }
+  
+  .logout-btn:hover {
+    background-color: #00aaff19;
+    color: #211d67;
+  }
+  
+  .create-btn img {
+    margin-left: 4px;
+    width: 35%;
+  }
+  
+  .nav-center {
+    text-align: center;
+    transform: translateX(50px);
+  }
+  
+
+  .welcome-text {
+    font-size: 16px;
+    margin-top: 5px;
+  }
+  .typing-container {
+    display: inline-block; /* или flex */
+    font-family: monospace;
+    font-size: 24px;
+    height: 1.2em; /* Фиксированная высота */
+    white-space: nowrap; /* Запрет переноса строк */
+  }
+  
+  .typing-text {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    animation: typing 10s steps(24) infinite;
+    vertical-align: bottom;
+    color:#8a8a8a93;
+  }
+  
+  .cursor1 {
+
+    color:#8a8a8a93;
+  }
+  
+  @keyframes typing {
+    0% { width: 0 }
+    50% { width: 100% }
+    100% { width: 0 }
+  }
+  
+  @keyframes blink {
+    from, to { opacity: 0 }
+    50% { opacity: 1 }
+  }
+
+  
+  .logo-container {
+    position: relative;
+    width: 560px;
+    height: auto;
+    margin: 20px auto 0;
+    perspective: 1000px;
+  }
+  
+  .logo {
+    transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transform-style: preserve-3d;
+    filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.15));
+  }
+  
+  .logo:hover {
+    transform: rotateY(15deg) rotateX(5deg) scale(1.05);
+    filter: drop-shadow(4px 8px 12px rgba(0, 170, 255, 0.25));
+  }
+  
+  /* Эффект "сияния" при наведении */
+  .logo::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: radial-gradient(circle, rgba(0,170,255,0.3) 0%, transparent 70%);
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+  }
+  
+  .logo:hover::after {
+    opacity: 1;
+  }
+  
+  /* Анимация плавного мерцания */
+  @keyframes gentlePulse {
+    0%, 100% { opacity: 0.9; }
+    50% { opacity: 1; }
+  }
+  
+  .logo {
+    animation: gentlePulse 4s infinite ease-in-out;
+  }
+  
+  /* Эффект "волны" при загрузке */
+  @keyframes wave {
+    0% { transform: translateY(0) rotateY(0); }
+    25% { transform: translateY(-10px) rotateY(5deg); }
+    50% { transform: translateY(0) rotateY(0); }
+    75% { transform: translateY(-5px) rotateY(-5deg); }
+    100% { transform: translateY(0) rotateY(0); }
+  }
+  
+  /* Применяем анимацию wave только при загрузке */
+  .logo.loaded {
+    animation: wave 2s ease-in-out;
+  }
+  
+  /* Адаптация для мобильных */
+  @media (max-width: 768px) {
+    .logo-container {
+      width: 90%;
+      max-width: 300px;
+    }
+    
+    .logo {
+      transform: none !important;
+      animation: none !important;
+    }
+    
+    .logo:hover {
+      filter: drop-shadow(2px 4px 6px rgba(0, 170, 255, 0.15));
+    }
+  }

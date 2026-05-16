@@ -40,6 +40,7 @@ const AuthPage = () => {
   });
 
   const onSubmit = async ({ username, password }) => {
+    console.log('Form submitted with:', { username, password: '***' });
     setIsLoading(true);
     setServerError(null);
 
@@ -53,7 +54,8 @@ const AuthPage = () => {
         login(response.data.token, {
           userId: response.data.user_id,
           username: response.data.username,
-          email: response.data.email
+          email: response.data.email,
+          is_superuser: response.data.is_superuser || false
         });
         navigate(location.state?.from?.pathname || '/', { replace: true });
       } else {

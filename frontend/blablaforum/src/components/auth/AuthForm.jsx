@@ -1,9 +1,15 @@
 import React from 'react';
 import '../../style/auth/AuthForm.css';
 
-const AuthForm = ({ onSubmit, register, errors }) => {
+const AuthForm = ({ onSubmit, register, errors, serverError, isLoading, isValid }) => {
   return (
     <form onSubmit={onSubmit}>
+      {serverError && (
+        <div className="server-error">
+          {serverError}
+        </div>
+      )}
+      
       <div className="form-group">
         <input
           type="text"
@@ -33,8 +39,12 @@ const AuthForm = ({ onSubmit, register, errors }) => {
       </div>
 
       <div className="button-container">
-        <button type="submit" className="send-button">
-          &gt;
+        <button 
+          type="submit" 
+          className="send-button"
+          disabled={isLoading || !isValid}
+        >
+          {isLoading ? '...' : '>'}
         </button>
       </div>
     </form>

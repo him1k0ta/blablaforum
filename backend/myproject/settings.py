@@ -19,10 +19,13 @@ INSTALLED_APPS = [
 
     # Ваши приложения
     'accounts.apps.AccountsConfig',
+    'forums.apps.ForumsConfig',
+    'moderation.apps.ModerationConfig',
 
     # Сторонние приложения
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'corsheaders',
 ]
 
@@ -31,7 +34,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',  # Должен быть как можно выше
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',  # Отключаем CSRF для API
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -42,7 +45,7 @@ ROOT_URLCONF = 'myproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -91,6 +94,27 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
+# JWT Settings
+from datetime import timedelta
+
+JWT_AUTH = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'ALGORITHM': 'HS256',
+    'SIGNING_KEY': SECRET_KEY,
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'AUTH_COOKIE': 'access_token',  # Для работы с сессиями
+    'AUTH_COOKIE_REFRESH': 'refresh_token',  # Для работы с сессиями
+    'AUTH_COOKIE_DOMAIN': None,  # Для локальной разработки
+    'AUTH_COOKIE_SECURE': False,  # Для разработки
+    'AUTH_COOKIE_SAMESITE': 'Lax',  # Для безопасности
+    'AUTH_COOKIE_HTTP_ONLY': True,  # Для безопасности
+}
+
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
@@ -104,8 +128,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # REST Framework
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        'accounts.middleware.CookieJWTAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
@@ -130,6 +154,8 @@ REST_FRAMEWORK = {
         'user': '1000/day'
     },
     'DATETIME_FORMAT': '%Y-%m-%d %H:%M:%S',
+    'CSRF_COOKIE_NAME': 'csrftoken',
+    'CSRF_HEADER_NAME': 'HTTP_X_CSRFTOKEN',
 }
 
 # CORS Settings
@@ -138,12 +164,16 @@ CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
     "http://localhost:8000",
     "http://127.0.0.1:8000",
 ]
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:3000",
+    "http://localhost:3001",
+    "http://127.0.0.1:3001",
 ]
 
 # Custom User Model
@@ -156,6 +186,14 @@ DEFAULT_FROM_EMAIL = 'noreply@example.com'
 # Auth settings
 LOGIN_URL = '/api/auth/login/'
 LOGOUT_REDIRECT_URL = '/'
+
+# Session settings
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+SESSION_COOKIE_AGE = 1209600  # 2 weeks in seconds
+SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_SECURE = False  # Для разработки, в продакшене True
+SESSION_COOKIE_HTTPONLY = True
+CSRF_COOKIE_SECURE = False  # Для разработки, в продакшене True
 
 # Logging
 LOGGING = {

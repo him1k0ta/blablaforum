@@ -23,6 +23,10 @@ const Navbar = () => {
     navigate('/create');
   };
 
+  const handleProfileClick = () => {
+    navigate('/profile');
+  };
+
   const handleLogout = () => {
     logout();
     navigate('/');
@@ -50,7 +54,10 @@ const Navbar = () => {
       </div>
       <div className="nav-right">
         {isAuthenticated ? (
-          <button className="logout-btn" onClick={handleLogout}>ВЫЙТИ</button>
+          <>
+            <button className="profile-btn" onClick={handleProfileClick}>ПРОФИЛЬ</button>
+            <button className="logout-btn" onClick={handleLogout}>ВЫЙТИ</button>
+          </>
         ) : (
           <>
             <button className="auth-btn" onClick={handleAuthClick}>ВХОД</button>
