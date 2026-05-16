@@ -1,13 +1,15 @@
 import React from 'react';
 import Header from '../components/layout/Header';
-import Section from '../components/layout/Section';
-import Footer from '../components/layout/Footer';
+import BoardList from '../components/boards/BoardList';
+import Footer from '../components/threads/Footer';
 
 const Main = () => {
   return (
-    <div>
+    <div className="forum-page">
       <Header />
-      <Section/>
+      <div className="forum-content">
+        <BoardList />
+      </div>
       <Footer />
     </div>
   );

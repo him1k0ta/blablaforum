@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { boardsAPI } from '../../api/boards';
-import styles from './BoardList.module.css';
+import styles from '../../style/boards/BoardList.module.css';
 
 const BoardList = () => {
   const [boards, setBoards] = useState([]);
@@ -76,8 +76,8 @@ const BoardList = () => {
                 <span className={styles.boardStatus}>
                   {board.is_active ? 'Активна' : 'Неактивна'}
                 </span>
-                <span className={styles.boardDate}>
-                  Создана: {new Date(board.created_at).toLocaleDateString('ru-RU')}
+                <span className={styles.boardThreads}>
+                  Треды: {board.threads_count || 0}
                 </span>
               </div>
             </Link>

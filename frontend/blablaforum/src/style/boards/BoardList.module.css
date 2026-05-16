@@ -2,117 +2,151 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background: #f0e0d6; /* Классический цвет фона имиджбордов */
+  min-height: 100vh;
 }
 
 .title {
-  color: #2c3e50;
+  color: #800000; /* Классический красный цвет 4chan */
   text-align: center;
   margin-bottom: 30px;
   font-size: 2.5rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
 }
 
 .loading, .error {
   text-align: center;
   padding: 50px;
   font-size: 1.2rem;
+  font-family: 'Courier New', monospace;
 }
 
 .error {
-  color: #e74c3c;
+  color: #800000;
 }
 
 .retryBtn {
   margin-top: 15px;
   padding: 10px 20px;
-  background: #3498db;
+  background: #800000;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 0;
   cursor: pointer;
   transition: background 0.3s;
+  font-family: 'Courier New', monospace;
 }
 
 .retryBtn:hover {
-  background: #2980b9;
+  background: #600000;
 }
 
 .empty {
   text-align: center;
   padding: 50px;
-  background: #f8f9fa;
-  border-radius: 10px;
-  color: #7f8c8d;
+  background: white;
+  border: 1px solid #d4d4d4;
+  color: #800000;
+  font-family: 'Courier New', monospace;
 }
 
 .boardsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
 }
 
 .boardCard {
   display: block;
   background: white;
-  border-radius: 10px;
-  padding: 25px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #d4d4d4;
+  padding: 15px;
   text-decoration: none;
-  color: #333;
-  transition: transform 0.3s, box-shadow 0.3s;
-  border: 2px solid transparent;
+  color: #800000;
+  transition: all 0.2s;
+  font-family: 'Courier New', monospace;
+  position: relative;
 }
 
 .boardCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  border-color: #3498db;
+  background: #f8f8f8;
+  border-color: #800000;
+  transform: translateY(-2px);
+}
+
+.boardCard:hover .boardName {
+  background: #800000;
+  color: white;
 }
 
 .boardHeader {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
 }
 
 .boardName {
   display: inline-block;
-  background: #3498db;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-family: monospace;
-  font-size: 1.1rem;
-  margin-right: 10px;
-  margin-bottom: 5px;
+  background: #d4d4d4;
+  color: #800000;
+  padding: 2px 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: all 0.2s;
 }
 
 .boardTitle {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: normal;
+  color: #800000;
 }
 
 .boardDescription {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 15px;
-  min-height: 50px;
+  color: #585858;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  min-height: 40px;
+  font-size: 0.9rem;
 }
 
 .boardMeta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.85rem;
-  color: #7f8c8d;
+  font-size: 0.8rem;
+  color: #789922; /* Зеленый цвет для мета-информации */
 }
 
 .boardStatus {
-  background: #27ae60;
+  background: #789922;
   color: white;
-  padding: 3px 8px;
-  border-radius: 12px;
-  font-size: 0.75rem;
+  padding: 2px 6px;
+  font-size: 0.7rem;
 }
 
-.boardDate {
-  font-style: italic;
+.boardThreads {
+  color: #789922;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+  }
+  
+  .boardsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+  }
+  
+  .boardCard {
+    padding: 10px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
 }
