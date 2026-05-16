@@ -38,6 +38,7 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
     gap: 25px;
+    align-items: start;
 }
 
 .threadCard {
@@ -429,6 +430,36 @@
 .threadContent {
     margin-bottom: 20px;
     line-height: 1.6;
+}
+
+.threadImage {
+    margin-top: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 100%;
+    display: block;
+}
+
+.threadImage img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.threadCard:hover .threadImage img {
+    transform: scale(1.02);
+}
+
+.threadCard:not(:has(.threadImage)) {
+    min-height: auto;
+}
+
+.threadCard:has(.threadImage) {
+    /* Треды с изображениями сохраняют свою структуру */
 }
 
 .threadActions {
