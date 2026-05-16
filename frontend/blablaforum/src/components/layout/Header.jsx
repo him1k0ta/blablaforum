@@ -23,6 +23,10 @@ const Navbar = () => {
     navigate('/create');
   };
 
+  const handleBoardsClick = () => {
+    navigate('/boards');
+  };
+
   const handleProfileClick = () => {
     navigate('/profile');
   };
@@ -35,6 +39,9 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="nav-left">
+        <button className="boards-btn" onClick={handleBoardsClick}>
+          ДОСКИ
+        </button>
         <button className="create-btn" onClick={handleCreateClick}>
           СОЗДАТЬ <img src={addIcon} alt="Добавить" />
         </button>

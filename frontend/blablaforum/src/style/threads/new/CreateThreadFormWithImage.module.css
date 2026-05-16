@@ -1,0 +1,188 @@
+.threadFormContainer {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formTitle {
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8rem;
+}
+
+.threadForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 12px;
+  border: 2px solid #e1e8ed;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.formGroup textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.imageUploadArea {
+  position: relative;
+}
+
+.imageInput {
+  display: none;
+}
+
+.uploadPlaceholder {
+  border: 2px dashed #e1e8ed;
+  border-radius: 8px;
+  padding: 40px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.3s, background-color 0.3s;
+}
+
+.uploadPlaceholder:hover {
+  border-color: #3498db;
+  background-color: #f8f9fa;
+}
+
+.uploadIcon {
+  font-size: 3rem;
+  color: #bdc3c7;
+  margin-bottom: 10px;
+}
+
+.uploadHint {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+.imagePreview {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.previewImg {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.removeImageBtn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(231, 76, 60, 0.9);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s;
+}
+
+.removeImageBtn:hover {
+  background: rgba(192, 57, 43, 0.9);
+}
+
+.formButtons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.submitBtn,
+.cancelBtn {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.submitBtn {
+  background: #3498db;
+  color: white;
+  flex: 1;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  background: #bdc3c7;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.cancelBtn {
+  background: #ecf0f1;
+  color: #2c3e50;
+}
+
+.cancelBtn:hover:not(:disabled) {
+  background: #d5dbdd;
+  transform: translateY(-2px);
+}
+
+.cancelBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .threadFormContainer {
+    margin: 0 15px;
+    padding: 20px;
+  }
+  
+  .formButtons {
+    flex-direction: column;
+  }
+  
+  .submitBtn,
+  .cancelBtn {
+    width: 100%;
+  }
+}

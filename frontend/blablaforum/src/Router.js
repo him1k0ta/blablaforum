@@ -11,6 +11,8 @@ import Create from './pages/create';
 import AdminPanel from './pages/admin';
 import ThreadPage from './pages/threadpage';
 import Profile from './pages/profile';
+import BoardsPage from './pages/BoardsPage';
+import BoardPage from './pages/BoardPage';
 
 const AppRoutes = () => {
     return (
@@ -25,6 +27,8 @@ const AppRoutes = () => {
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/thread/:id" element={<ThreadPage />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/boards" element={<BoardsPage />} />
+            <Route path="/board/:slug" element={<BoardPage />} />
         </Routes>
     );
 };

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
 import { useThreads } from '../../../ThreadsContext';
+import { boardsAPI } from '../../../api/boards';
+import { useAuth } from '../../../AuthContext';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -12,7 +14,7 @@ import styles from '../../../style/threads/new/CreateThreadFormWithImage.module.
 
 
 
-const CreateThreadFormWithImage = ({ boardSlug }) => {
+const CreateThreadFormWithImage = ({ boardSlug, onThreadCreated, onCancel }) => {
 
   const [formData, setFormData] = useState({
 
@@ -29,6 +31,7 @@ const CreateThreadFormWithImage = ({ boardSlug }) => {
   const [imagePreview, setImagePreview] = useState(null);
 
   const { createThread, fetchThreads } = useThreads();
+  const { user, token } = useAuth();
 
   const navigate = useNavigate();
 
@@ -127,27 +130,40 @@ const CreateThreadFormWithImage = ({ boardSlug }) => {
     
 
     try {
-
-      // Создаем объект данных для отправки
-
-      const submitData = {
-        title: formData.title,
-        content: formData.content,
-      };
-
-      // Добавляем изображение, если оно есть
-      if (formData.image) {
-        submitData.image = formData.image;
+      if (!token) {
+        toast.error('Необходимо авторизоваться для создания треда');
+        return;
       }
 
-      await createThread(submitData);
+      let newThread;
 
-      
+      if (boardSlug) {
+        // Создаем тред в конкретной доске
+        newThread = await boardsAPI.createThreadInBoard(boardSlug, formData, token);
+      } else {
+        // Создаем обычный тред (старая логика)
+        const submitData = {
+          title: formData.title,
+          content: formData.content,
+        };
+
+        if (formData.image) {
+          submitData.image = formData.image;
+        }
+
+        newThread = await createThread(submitData);
+      }
+
       toast.success('Тред успешно создан!');
-      await fetchThreads(); // Обновляем список тредов
       
-      // Перенаправление на главную страницу с тредами
-      navigate('/threads', { replace: true }); 
+      // Вызываем обратный вызов если передан
+      if (onThreadCreated) {
+        onThreadCreated(newThread);
+      } else {
+        // Стандартное поведение
+        await fetchThreads();
+        navigate(boardSlug ? `/board/${boardSlug}` : '/threads', { replace: true }); 
+      } 
       
     } catch (err) {
       console.error('Thread creation error:', err);
@@ -314,19 +330,43 @@ const CreateThreadFormWithImage = ({ boardSlug }) => {
         
 
 
-        <button 
+        <div className={styles.formButtons}>
 
-          type="submit" 
+          <button 
 
-          className={styles.submitBtn}
+            type="submit" 
 
-          disabled={isSubmitting}
+            className={styles.submitBtn}
 
-        >
+            disabled={isSubmitting}
 
-          {isSubmitting ? 'Создание...' : 'Создать тред'}
+          >
 
-        </button>
+            {isSubmitting ? 'Создание...' : 'Создать тред'}
+
+          </button>
+
+          {onCancel && (
+
+            <button 
+
+              type="button" 
+
+              className={styles.cancelBtn}
+
+              onClick={onCancel}
+
+              disabled={isSubmitting}
+
+            >
+
+              Отмена
+
+            </button>
+
+          )}
+
+        </div>
 
       </form>
 

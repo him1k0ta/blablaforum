@@ -18,7 +18,8 @@
   .register-btn,
   .create-btn,
   .profile-btn,
-  .logout-btn {
+  .logout-btn,
+  .boards-btn {
     display: flex;
     align-items: center;
     border: 1px solid #8a8a8a;
@@ -43,6 +44,11 @@
   
   .auth-btn {
     margin-right: 30px;
+  }
+  
+  .boards-btn {
+    padding: 3.5%;
+    margin-right: 15px;
   }
   
   .create-btn {
@@ -70,7 +76,8 @@
   
   .auth-btn:hover,
   .register-btn:hover,
-  .create-btn:hover {
+  .create-btn:hover,
+  .boards-btn:hover {
     background-color: #00aaff19;
     color: #211d67;
   }
